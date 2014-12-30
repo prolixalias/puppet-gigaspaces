@@ -1,0 +1,38 @@
+#Variables sent in from Puppet
+export NIC_ADDR=<%= @ipaddress_eth1 %>
+export JAVA_HOME=<%= @java_home %>
+export GS_HOME=<%= @gigaspaces_home %>
+export GIGASPACES_HOME=${GS_HOME}
+export JSHOMEDIR=${GS_HOME}
+export LOOKUPLOCATORS=<%= @lookup_locators %>
+export LOOKUPGROUPS=<%= @lookup_groups %>
+export AGENT_ZONE=<%= @hostname %>
+
+#GigaSpaces location settings
+LOGFILE_PATTERN={homedir}/logs/{date,yyyy-MM-dd~HH.mm}-gigaspaces-{service}-{host}-{pid}.log
+
+GS_DEPLOY_FOLDER=$GIGASPACES_HOME/deploy
+GS_WORK_FOLDER=$GIGASPACES_HOME/work
+
+#GigaSpaces memory settings
+
+GSA_MEMORY="-Xmx256m -XX:MaxPermSize=128m"
+GSM_MEMORY=-Xmx256m
+LUS_MEMORY=-Xmx256m
+
+#Gigaspace property definitions
+LOGFILE_PATTERN_PROP="-Dcom.gigaspaces.logger.RollingFileHandler.filename-pattern=$LOGFILE_PATTERN"
+MULTICAST_DISABLED_PROP=-Dcom.gs.multicast.enabled=false
+DEPLOY_FOLDER_SETTING=-Dcom.gs.deploy=$GS_DEPLOY_FOLDER
+WORK_FOLDER_SETTING=-Dcom.gs.work=$GS_WORK_FOLDER
+AGENT_ZONE_SETTING=-Dcom.gs.zones=$AGENT_ZONE
+
+export JAVA_OPTIONS="$LOGFILE_PATTERN_PROP $DEPLOY_FOLDER_SETTING $WORK_FOLDER_SETTING"
+export EXT_JAVA_OPTIONS="$MULTICAST_DISABLED_PROP"
+export GSA_JAVA_OPTIONS="$GSA_MEMORY $AGENT_ZONE_SETTING"
+export GSM_JAVA_OPTIONS="$GSM_MEMORY"
+export LUS_JAVA_OPTIONS="$LUS_MEMORY"
+
+PATH=$PATH:$JAVA_HOME/bin:$GIGASPACES_HOME/bin
+
+export PATH
