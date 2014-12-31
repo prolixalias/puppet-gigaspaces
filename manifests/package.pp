@@ -1,7 +1,4 @@
-class gigaspaces::package (
-  $package_version = '10.0.1',
-  $package_build = 'b11800'
-){
+class gigaspaces::package {
   
   file { 'oracle_jdk':
     ensure  => present,
