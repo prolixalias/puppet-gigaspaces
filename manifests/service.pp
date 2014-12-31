@@ -1,6 +1,6 @@
 class gigaspaces::service {
 
-  if $manage_service {
+  if $::gigaspaces::manage_service {
 
     service { 'gigaspace-agent':
       ensure  => running,
@@ -10,7 +10,7 @@ class gigaspaces::service {
 
     file { 'gigaspaces_init_file':
       ensure  => present,
-      path    => '/etc/init.d/gigaspace-agent',
+      path    => '/etc/init.d/gigaspaces-agent',
       owner   => root,
       group   => root,
       mode    => '0755',
