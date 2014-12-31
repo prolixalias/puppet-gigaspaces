@@ -1,7 +1,8 @@
-#Variables sent in from Puppet
-export NIC_ADDR=<%= @ipaddress_eth1 %>
+# File is managed by the <%= @module_name %> Puppet module.
+#
+export NIC_ADDR=<%= @ipaddress %>
 export JAVA_HOME=<%= @java_home %>
-export GS_HOME=<%= @gigaspaces_home %>
+export GS_HOME=<%= @home_dir %>
 export GIGASPACES_HOME=${GS_HOME}
 export JSHOMEDIR=${GS_HOME}
 export LOOKUPLOCATORS=<%= @lookup_locators %>
