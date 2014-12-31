@@ -1,30 +1,31 @@
 class gigaspaces::config {
 
-  if $manage_user {
+  if $::gigaspaces::manage_user {
 
-    user { 'gigaspaces':
+    user { $::gigaspaces::user:
       ensure   => present,
-      password => $::gigaspaces::user_password,
+      password => $::gigaspaces::password,
       home     => $::gigaspaces::home_dir,
+      group    => $::gigaspaces::group,
     }
 
     File {
-      owner => gigaspaces,
-      group => gigaspaces,
+      owner => $::gigaspaces::user,
+      group => $::gigaspaces::group,
     }
   }
 
-  if $manage_license {
-    file { 'gslicense':
+  if $::gigaspaces::manage_license {
+    file { 'gigaspaces_license':
       ensure  => present,
-      path    => "${::gigaspaces_home}/gslicense.xml",
+      path    => "${::gigaspaces::home_dir}/gslicense.xml",
       content => template("${module_name}/gslicense.xml.erb"),
     }
   }
 
   file { 'gigaspaces_environment.sh':
     ensure  => present,
-    path    => "${::gigaspaces_home}/environment.sh",
+    path    => "${::gigaspaces::home_dir}/environment.sh",
     content => template("${module_name}/gs_environment.erb"),
 
   }
@@ -38,12 +39,12 @@ class gigaspaces::config {
     group  => root,
   }
 
-  file { $gigaspaces_lib_dir:
+  file { $::gigaspaces::lib_dir:
     ensure => directory,
     mode   => '0755',
   }
 
-  file { "${gigaspaces_lib_dir}/work":
+  file { "${::gigaspaces::lib_dir}/work":
     ensure => directory,
   }
 }

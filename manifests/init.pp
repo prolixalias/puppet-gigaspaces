@@ -17,8 +17,8 @@ class gigaspaces (
   $package_base_name  = $gigaspaces::params::package_base_name,
   $package_build      = $gigaspaces::params::build_version,
   $package_version    = $gigaspaces::params::package_version,
-  $user_name          = $gigaspaces::params::user_name,
-  $user_password      = $gigaspceas::params::user_password,
+  $user          = $gigaspaces::params::user,
+  $password      = $gigaspaces::params::password,
 ) inherits gigaspaces::params {
 
   require stdlib
