@@ -38,13 +38,4 @@ class gigaspaces::config {
     owner  => root,
     group  => root,
   }
-
-  file { $::gigaspaces::lib_dir:
-    ensure => directory,
-    mode   => '0755',
-  }
-
-  file { "${::gigaspaces::lib_dir}/work":
-    ensure => directory,
-  }
 }
