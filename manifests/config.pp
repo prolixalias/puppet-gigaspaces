@@ -1,31 +1,51 @@
+# == Class: gigaspaces::config
+#
+# This manages and installs the configuration files for Gigaspaces
+#
+# === Parameters
+#
+# This class does not provide any parameters
+#
+# === Examples 
+#
+# This class may be imported by other classes to use its functionality:
+#   class { 'gigaspaces::config': }
+# 
+# It is not intedned to be used directly by external resources like node 
+# definitions or other modules.
+#
+# === Authors
+#
+# * Lowe Schmidt <mailto:github@loweschmidt.se>
+#
 class gigaspaces::config {
 
-  if $::gigaspaces::manage_user {
+  if $gigaspaces::manage_user {
 
-    user { $::gigaspaces::user:
+    user { $gigaspaces::user:
       ensure   => present,
-      password => $::gigaspaces::password,
-      home     => $::gigaspaces::home_dir,
-      group    => $::gigaspaces::group,
+      password => $gigaspaces::password,
+      home     => $gigaspaces::home_dir,
+      group    => $gigaspaces::group,
     }
 
     File {
-      owner => $::gigaspaces::user,
-      group => $::gigaspaces::group,
+      owner => $gigaspaces::user,
+      group => $gigaspaces::group,
     }
   }
 
-  if $::gigaspaces::manage_license {
+  if $gigaspaces::manage_license {
     file { 'gigaspaces_license':
       ensure  => present,
-      path    => "${::gigaspaces::home_dir}/gslicense.xml",
+      path    => "${gigaspaces::home_dir}/gslicense.xml",
       content => template("${module_name}/gslicense.xml.erb"),
     }
   }
 
   file { 'gigaspaces_environment.sh':
     ensure  => present,
-    path    => "${::gigaspaces::home_dir}/environment.sh",
+    path    => "${gigaspaces::home_dir}/environment.sh",
     content => template("${module_name}/gs_environment.erb"),
 
   }

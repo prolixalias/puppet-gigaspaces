@@ -1,3 +1,10 @@
+# == Class: gigaspaces
+#
+# This class installs and configures the Gigaspaces XAP agent on a node.
+# 
+# === Parameters
+#
+# 
 class gigaspaces (
   $environment_file    = $gigaspaces::params::environment_file,
   $group               = $gigaspaces::params::group,
@@ -31,8 +38,8 @@ class gigaspaces (
   validate_bool($manage_service, $manage_user, $management_machine)
   validate_re($package_provider, '^os_package$', '^zip$')
 
-  class { '::gigaspaces::package': } ->
-  class { '::gigaspaces::config': } ->
-  class { '::gigaspaces::service': }
+  class { 'gigaspaces::package': } ->
+  class { 'gigaspaces::config': } ->
+  class { 'gigaspaces::service': }
 
 }

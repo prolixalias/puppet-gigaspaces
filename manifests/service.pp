@@ -1,6 +1,6 @@
 class gigaspaces::service {
 
-  if $::gigaspaces::manage_service {
+  if $gigaspaces::manage_service {
 
     service { 'gigaspace-agent':
       ensure  => running,
