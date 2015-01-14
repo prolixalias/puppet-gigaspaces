@@ -1,5 +1,9 @@
 #gigaspaces
 
+## WORK IN PROGRESS ## 
+I am still very much working on this, it is fairly untested, probably broken and some sort of pre alpha stage.
+
+Be aware.
 #### Table of Contents
 
 1. [Overview](#overview)
