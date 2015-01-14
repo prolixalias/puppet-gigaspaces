@@ -1,6 +1,6 @@
 #gigaspaces
 
-## WORK IN PROGRESS ## 
+## WORK IN PROGRESS 
 I am still very much working on this, it is fairly untested, probably broken and some sort of pre alpha stage.
 
 Be aware.
