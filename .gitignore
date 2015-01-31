@@ -2,3 +2,4 @@
 *.rpm
 Gemfile.lock
 spec/fixtures/*
+pkg/*
