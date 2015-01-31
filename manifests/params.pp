@@ -1,4 +1,5 @@
 class gigaspaces::params {
+  $bind_host           = $::ipaddress
   $environment_file    = "${home_dir}/environment.sh"
   $group               = 'gigaspaces'
   $home_dir            = '/opt/gigaspaces'
@@ -21,5 +22,4 @@ class gigaspaces::params {
   $package_version     = '10.0.1'
   $password            = 'gigaspaces'
   $user                = 'gigaspaces'
-  
 }

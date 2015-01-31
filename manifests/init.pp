@@ -6,6 +6,7 @@
 #
 # 
 class gigaspaces (
+  $bind_host           = $gigaspaces::params::bind_host,
   $environment_file    = $gigaspaces::params::environment_file,
   $group               = $gigaspaces::params::group,
   $home_dir            = $gigaspaces::params::home_dir,
@@ -32,7 +33,7 @@ class gigaspaces (
 
   validate_string($environment_file, $home_dir, $java_home, $lib_dir)
   validate_string($license_key, $log_dir, $package_base_name, $package_build)
-  validate_string($package_version, $user, $group, $password)
+  validate_string($package_version, $user, $group, $password, $bind_host)
   validate_array($lookup_groups, $lookup_locators)
   validate_bool($manage_java, $manage_license, $manage_package)
   validate_bool($manage_service, $manage_user, $management_machine)
