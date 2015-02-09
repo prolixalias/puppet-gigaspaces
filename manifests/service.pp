@@ -1,7 +1,6 @@
 class gigaspaces::service {
 
   if $gigaspaces::manage_service {
-
     service { 'gigaspace-agent':
       ensure  => running,
       enable  => true,
@@ -18,6 +17,5 @@ class gigaspaces::service {
       notify  => Service['gigaspace-agent'],
       require => File['gs_environment'],
     }
-
   }
 }

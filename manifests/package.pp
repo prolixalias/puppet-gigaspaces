@@ -10,7 +10,7 @@ class gigaspaces::package {
     }
   }
   
-  if ( $gigaspaces::manage_package and $gigaspaces::package_provider == 'zip') {
+  if ($gigaspaces::manage_package and $gigaspaces::package_provider == 'zip') {
     package { 'unzip':
       ensure => present,
     }

@@ -1,1 +1,1 @@
-include gigaspaces
+class { 'gigaspaces': }

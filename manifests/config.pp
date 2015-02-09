@@ -11,7 +11,7 @@
 # This class may be imported by other classes to use its functionality:
 #   class { 'gigaspaces::config': }
 # 
-# It is not intedned to be used directly by external resources like node 
+# It is not intended to be used directly by external resources like node 
 # definitions or other modules.
 #
 # === Authors
@@ -20,6 +20,11 @@
 #
 class gigaspaces::config {
 
+  File {
+    owner => $gigaspaces::user,
+    group => $gigaspaces::group,
+  }
+
   if $gigaspaces::manage_user {
 
     user { $gigaspaces::user:
@@ -27,11 +32,6 @@ class gigaspaces::config {
       password => $gigaspaces::password,
       home     => $gigaspaces::home_dir,
       group    => $gigaspaces::group,
-    }
-
-    File {
-      owner => $gigaspaces::user,
-      group => $gigaspaces::group,
     }
   }
 
