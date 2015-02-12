@@ -27,11 +27,15 @@ class gigaspaces::config {
 
   if $gigaspaces::manage_user {
 
+    group { $gigaspaces::group:
+      ensure => present,
+    }
+
     user { $gigaspaces::user:
       ensure   => present,
       password => $gigaspaces::password,
       home     => $gigaspaces::home_dir,
-      group    => $gigaspaces::group,
+      gid      => $gigaspaces::group,
     }
   }
 
