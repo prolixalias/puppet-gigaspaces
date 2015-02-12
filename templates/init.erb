@@ -20,7 +20,7 @@
 ### END INIT INFO
 
 
-. <%= @gigaspaces::environment_file %>
+. <%= @environment_file %>
 . /etc/rc.d/init.d/functions
 
 check() {
@@ -33,7 +33,7 @@ start(){
 
 	if [ ! -f /var/lock/subsys/gigaspaces ]; then
 		echo -n $"Starting the Gigaspace agent"
-		<%- if @gigaspaces::management_machine %>  
+		<%- if @management_machine %>  
 		daemon --user=gigaspaces ${GS_HOME}/bin/gs-agent.sh gsa.gsm 1 gsa.lus 1 gsa.global.gsm 0 gsa.global.lus 0 gsa.gsc 0 > /dev/null 2>&1 &
 		<%- else %>
 		daemon --user=gigaspaces ${GS_HOME}/bin/gs-agent.sh gsa.gsm 0 gsa.lus 0 gsa.global.gsm 0 gsa.global.lus 0 gsa.gsc 0 > /dev/null 2>&1 &
