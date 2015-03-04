@@ -29,7 +29,36 @@
 #   String. The gigaspaces license key.
 # 
 # [*log_dir*] 
-#   String. The 
+#   String. The directory path for gigaspaces log files.
+#
+# [*lookup_groups*]
+#   Array. Lookup group to be configured for the agent.
+#
+# [*lookup_locators*]
+#   Array. The IP address(es) or hostname(s) of the management machines. 
+#   Should probably be collectable via tags from a managment machine in the future.
+#
+# [*lookup_port*]
+#   Number. The port to use for connecting to the management machines.
+#
+# [*manage_java*]
+#   Boolean. If set to true it will install the package 'java'
+#
+# [*manage_license*]
+#   Boolean. If set to true it will distribute the license file, requires the
+#   license_key variable to be set. 
+#
+# [*manage_package*]
+#   Boolean. Install the gigaspace package, currently needs the zip file
+#   located in the files directory in this module.
+#
+# [*manage_service*]
+#   Boolean. If true will install the service file and enable the service.
+#
+# [*manage_user*]
+#   Boolean. If true will create the user specified in the user parameter.
+#   Disable this if you use LDAP or something similar even for system users.
+#
 class gigaspaces (
   $bind_host           = $gigaspaces::params::bind_host,
   $environment_file    = $gigaspaces::params::environment_file,
@@ -64,7 +93,7 @@ class gigaspaces (
   validate_array($lookup_groups, $lookup_locators)
   validate_bool($manage_java, $manage_license, $manage_package)
   validate_bool($manage_service, $manage_user, $management_machine)
-  validate_re($package_provider, '^os_package$', '^zip$')
+  validate_re($package_provider, [ '^os_package$', '^zip$' ])
 
   class { 'gigaspaces::package': }
   class { 'gigaspaces::config': }
