@@ -23,13 +23,13 @@ The Gigaspaces module allows you manage the Gigaspaces XAP agent and management 
 
 ## Module Description
 
-Gigaspaces XAP is a in-memory computing platform for the JVM, this module will install, configure and if you wish, enable the service.
+Gigaspaces XAP is a in-memory computing platform for the JVM, this module will install, configure and manage the service.
 
 ## Setup
 
 ### What gigaspaces affects
 
-* service  and environment files (created and written to).
+* service  and environment files
 * package 
 
 ### Setup Requirements 
@@ -57,13 +57,13 @@ To install Gigaspaces XAP management agent and start the service
 ```
 ## Usage
 
-All configuration should be done through the main gigaspaces class with parameters, see gigaspaces::params for default values.
+All configuration should be done through the main gigaspaces class with parameters, see gigaspaces::params for default values
 
 ## Reference
 
 ## Limitations
 
-The modules is currently only tested on EL6. 
+The modules has only ever been run on EL6 machines
 
 ## Development
 

@@ -60,41 +60,32 @@
 #   Disable this if you use LDAP or something similar even for system users.
 #
 class gigaspaces (
-  $bind_host           = $gigaspaces::params::bind_host,
-  $environment_file    = $gigaspaces::params::environment_file,
-  $group               = $gigaspaces::params::group,
-  $home_dir            = $gigaspaces::params::home_dir,
-  $java_home           = $gigaspaces::params::java_home,
-  $lib_dir             = $gigaspaces::params::lib_dir,
-  $license_key         = $gigaspaces::params::license_key,
-  $log_dir             = $gigaspaces::params::log_dir,
-  $lookup_groups       = $gigaspaces::params::lookup_groups,
-  $lookup_locators     = $gigaspaces::params::lookup_locators,
-  $lookup_port         = $gigaspaces::params::lookup_port,
-  $manage_java         = $gigaspaces::params::manage_java,
-  $manage_license      = $gigaspaces::params::manage_license,
-  $manage_package      = $gigaspaces::params::manage_package,
-  $manage_service      = $gigaspaces::params::manage_service,
-  $manage_user         = $gigaspaces::params::manage_user,
-  $management_machine  = $gigaspaces::params::management_machine,
-  $package_base_name   = $gigaspaces::params::package_base_name,
-  $package_build       = $gigaspaces::params::build_version,
-  $package_provider    = $gigaspaces::params::package_provider,
-  $package_version     = $gigaspaces::params::package_version,
-  $password            = $gigaspaces::params::password,
-  $user                = $gigaspaces::params::user,
+  String $bind_host                           = $gigaspaces::params::bind_host,
+  String $environment_file                    = $gigaspaces::params::environment_file,
+  String $group                               = $gigaspaces::params::group,
+  String $home_dir                            = $gigaspaces::params::home_dir,
+  String $java_home                           = $gigaspaces::params::java_home,
+  String $lib_dir                             = $gigaspaces::params::lib_dir,
+  String $license_key                         = $gigaspaces::params::license_key,
+  String $log_dir                             = $gigaspaces::params::log_dir,
+  Array $lookup_groups                        = $gigaspaces::params::lookup_groups,
+  Array $lookup_locators                      = $gigaspaces::params::lookup_locators,
+  Integer $lookup_port                        = $gigaspaces::params::lookup_port,
+  Boolean $manage_java                        = $gigaspaces::params::manage_java,
+  Boolean $manage_license                     = $gigaspaces::params::manage_license,
+  Boolean $manage_package                     = $gigaspaces::params::manage_package,
+  Boolean $manage_service                     = $gigaspaces::params::manage_service,
+  Boolean $manage_user                        = $gigaspaces::params::manage_user,
+  String $management_machine                  = $gigaspaces::params::management_machine,
+  String $package_base_name                   = $gigaspaces::params::package_base_name,
+  String $package_build                       = $gigaspaces::params::build_version,
+  Enum['zip', 'os_package'] $package_provider = $gigaspaces::params::package_provider,
+  Float $package_version                      = $gigaspaces::params::package_version,
+  String $password                            = $gigaspaces::params::password,
+  String $user                                = $gigaspaces::params::user,
 ) inherits gigaspaces::params {
 
   include stdlib
-
-  validate_string($environment_file, $home_dir, $java_home, $lib_dir)
-  validate_string($license_key, $log_dir, $package_base_name, $package_build)
-  validate_string($package_version, $user, $group, $password, $bind_host)
-  validate_array($lookup_groups, $lookup_locators)
-  validate_bool($manage_java, $manage_license, $manage_package)
-  validate_bool($manage_service, $manage_user, $management_machine)
-  validate_re($package_provider, [ '^os_package$', '^zip$' ])
-
   class { 'gigaspaces::package': }
   class { 'gigaspaces::config': }
   class { 'gigaspaces::service': }
