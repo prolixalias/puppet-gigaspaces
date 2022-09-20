@@ -19,14 +19,12 @@
 # * Lowe Schmidt <mailto:github@loweschmidt.se>
 #
 class gigaspaces::config {
-
   File {
     owner => $gigaspaces::user,
     group => $gigaspaces::group,
   }
 
   if $gigaspaces::manage_user {
-
     user { $gigaspaces::user:
       ensure   => present,
       password => $gigaspaces::password,
@@ -37,17 +35,16 @@ class gigaspaces::config {
 
   if $gigaspaces::manage_license {
     file { 'gigaspaces_license':
-      ensure  => present,
+      ensure  => file,
       path    => "${gigaspaces::home_dir}/gslicense.xml",
       content => template("${module_name}/gslicense.xml.erb"),
     }
   }
 
   file { 'gigaspaces_environment.sh':
-    ensure  => present,
+    ensure  => file,
     path    => "${gigaspaces::home_dir}/environment.sh",
     content => template("${module_name}/gs_environment.erb"),
-
   }
 
   file { 'gigaspaces_limits.d_conf':

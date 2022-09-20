@@ -1,5 +1,5 @@
 class gigaspaces::params {
-  $bind_host           = $::ipaddress
+  $bind_host           = $facts['networking']['ip']
   $environment_file    = "${home_dir}/environment.sh"
   $group               = 'gigaspaces'
   $home_dir            = '/opt/gigaspaces'

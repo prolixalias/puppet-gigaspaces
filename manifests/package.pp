@@ -1,15 +1,14 @@
 class gigaspaces::package {
-  
   $unpack_dir    = dirname($gigaspaces::home_dir)
   $file_name     = "${gigaspaces::package_base_name}-${gigaspaces::package_version}-ga-${gigaspaces::package_build}.zip"
   $install_path  = "${unpack_dir}/${gigaspaces::package_base_name}-${gigaspaces::package_version}-ga"
-  
+
   if $gigaspaces::manage_java {
     package { 'java':
       ensure => installed,
     }
   }
-  
+
   if ($gigaspaces::manage_package and $gigaspaces::package_provider == 'zip') {
     package { 'unzip':
       ensure => present,
@@ -30,16 +29,13 @@ class gigaspaces::package {
       creates => $install_path,
       require => File['gigaspaces_zip'],
     }
-
   } elsif ($gigaspaces::manage_package and $gigaspaces::package_provider == 'os_package') {
-
     package { 'gigaspaces':
       ensure => present,
     }
   } else {
     notice ("You have opted out of managing the ${module_name} package from this module.")
   }
-  
 
   file { 'gigaspaces':
     ensure => link,

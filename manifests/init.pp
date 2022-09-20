@@ -55,7 +55,6 @@ class gigaspaces (
   $password            = $gigaspaces::params::password,
   $user                = $gigaspaces::params::user,
 ) inherits gigaspaces::params {
-
   include stdlib
 
   validate_string($environment_file, $home_dir, $java_home, $lib_dir)
@@ -69,5 +68,4 @@ class gigaspaces (
   class { 'gigaspaces::package': }
   class { 'gigaspaces::config': }
   class { 'gigaspaces::service': }
-
 }
